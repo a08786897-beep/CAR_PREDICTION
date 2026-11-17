@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Prediction | Professional AI Estimator</title>
+    <!-- Tailwind CSS CDN for Modern Professional Styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex items-center justify-center p-4">
+
+    <div class="w-full max-w-2xl bg-slate-800/80 backdrop-blur-xl border border-slate-700/60 rounded-2xl shadow-2xl overflow-hidden p-8">
+        
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <span class="px-3 py-1 text-xs font-semibold bg-blue-500/10 text-blue-400 rounded-full border border-blue-500/20 uppercase tracking-wider">AI-Powered Analytics</span>
+            <h1 class="text-3xl font-bold mt-2 text-white">Car Price Predictor</h1>
+            <p class="text-slate-400 text-sm mt-1">Enter vehicle specifications below to get an instant market valuation.</p>
+        </div>
+
+        <!-- Form Grid -->
+        <form id="prediction-form" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            
+            <!-- Car Model -->
+            <div class="space-y-1.5">
+                <label class="text-xs font-medium text-slate-300 uppercase tracking-wider">Car Model</label>
+                <input type="text" id="model_name" required placeholder="e.g. Audi A4, Swift" 
+                    class="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
+            </div>
+
+            <!-- Manufacturing Year -->
+            <div class="space-y-1.5">
+                <label class="text-xs font-medium text-slate-300 uppercase tracking-wider">Manufacturing Year</label>
+                <input type="number" id="year" required placeholder="e.g. 2021" 
+                    class="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
+            </div>
+
+            <!-- Transmission -->
+            <div class="space-y-1.5">
+                <label class="text-xs font-medium text-slate-300 uppercase tracking-wider">Transmission</label>
+                <select id="transmission" required 
+                    class="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
+                    <option value="Manual" class="bg-slate-800">Manual</option>
+                    <option value="Automatic" class="bg-slate-800">Automatic</option>
+                    <option value="Semi-Auto" class="bg-slate-800">Semi-Auto</option>
+                </select>
+            </div>
+
+            <!-- Mileage -->
+            <div class="space-y-1.5">
+                <label class="text-xs font-medium text-slate-300 uppercase tracking-wider">Mileage (kms)</label>
+                <input type="number" id="mileage" step="any" required placeholder="e.g. 25000" 
+                    class="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
+            </div>
+
+            <!-- Fuel Type -->
+            <div class="space-y-1.5">
+                <label class="text-xs font-medium text-slate-300 uppercase tracking-wider">Fuel Type</label>
+                <select id="fuelType" required 
+                    class="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
+                    <option value="Petrol" class="bg-slate-800">Petrol</option>
+                    <option value="Diesel" class="bg-slate-800">Diesel</option>
+                    <option value="Hybrid" class="bg-slate-800">Hybrid</option>
+                    <option value="Electric" class="bg-slate-800">Electric</option>
+                </select>
+            </div>
+
+            <!-- Tax -->
+            <div class="space-y-1.5">
+                <label class="text-xs font-medium text-slate-300 uppercase tracking-wider">Tax</label>
+                <input type="number" id="tax" step="any" required placeholder="e.g. 150" 
+                    class="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
+            </div>
+
+            <!-- MPG -->
+            <div class="space-y-1.5">
+                <label class="text-xs font-medium text-slate-300 uppercase tracking-wider">MPG</label>
+                <input type="number" id="mpg" step="any" required placeholder="e.g. 55.4" 
+                    class="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
+            </div>
+
+            <!-- Engine Size -->
+            <div class="space-y-1.5">
+                <label class="text-xs font-medium text-slate-300 uppercase tracking-wider">Engine Size (L)</label>
+                <input type="number" id="engineSize" step="any" required placeholder="e.g. 1.5" 
+                    class="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
+            </div>
+
+            <!-- Submit Button spanning full width -->
+            <div class="md:col-span-2 mt-4">
+                <button type="submit" id="submit-btn" 
+                    class="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-6 rounded-lg shadow-lg shadow-blue-600/30 transition-all duration-200 flex items-center justify-center space-x-2">
+                    <span>Calculate Estimated Price</span>
+                </button>
+            </div>
+        </form>
+
+        <!-- Result Box -->
+        <div id="result-container" class="hidden mt-6 p-5 bg-emerald-950/40 border border-emerald-500/30 rounded-xl text-center backdrop-blur-md transition-all">
+            <p class="text-xs font-medium text-emerald-400 uppercase tracking-wider">Estimated Market Value</p>
+            <p id="price-output" class="text-3xl font-extrabold text-emerald-300 mt-1">₹ 0</p>
+        </div>
+
+    </div>
+
+    <!-- JS Logic -->
+    <script>
+        document.getElementById('prediction-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Analyzing Market...`;
+
+            const formData = {
+                model_name: document.getElementById('model_name').value,
+                year: parseInt(document.getElementById('year').value),
+                transmission: document.getElementById('transmission').value,
+                mileage: parseFloat(document.getElementById('mileage').value),
+                fuelType: document.getElementById('fuelType').value,
+                tax: parseFloat(document.getElementById('tax').value),
+                mpg: parseFloat(document.getElementById('mpg').value),
+                engineSize: parseFloat(document.getElementById('engineSize').value)
+            };
+
+            try {
+                const response = await fetch('http://127.0.0.1:8000/predict', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                if (!response.ok) throw new Error('Prediction failed');
+
+                const result = await response.json();
+                
+                const resultContainer = document.getElementById('result-container');
+                const priceOutput = document.getElementById('price-output');
+                
+                priceOutput.innerText = `₹ ${result.predicted_price_inr.toLocaleString('en-IN')}`;
+                resultContainer.classList.remove('hidden');
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Could not connect to the backend server. Make sure FastAPI is running.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<span>Calculate Estimated Price</span>`;
+            }
+        });
+    </script>
+</body>
+</html>
